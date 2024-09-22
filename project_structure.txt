@@ -1,0 +1,18 @@
+.
+├── debug.log
+├── Makefile
+├── poetry.lock
+├── project_structure.txt
+├── pyproject.toml
+├── README.md
+└── src
+    └── accounting_paper_generator
+        ├── accounting_paper_template.md
+        ├── app.py
+        ├── backend.py
+        ├── chart_of_accounts.md
+        ├── generate_accounting_paper_instructions.md
+        ├── generate_accounting_paper_prompt.txt
+        └── suggest_events_prompt.txt
+
+3 directories, 13 files
