@@ -56,13 +56,6 @@ except Exception as e:
     logger.error(f"Error loading llm_config: {str(e)}")
     llm_config = None
     
-accounting_paper_template = load_file("accounting_paper_template.md")
-generate_accounting_paper_instructions = load_file("generate_accounting_paper_instructions.md")
-generate_accounting_paper_prompt = load_file("generate_accounting_paper_prompt.txt")
-chart_of_accounts = load_file("chart_of_accounts.md")
-suggest_events_prompt = load_file("suggest_events_prompt.txt")
-
-
 def get_llm(provider, model):
     if provider == "anthropic":
         api_key = st.secrets["anthropic"]["api_key"]
@@ -82,6 +75,11 @@ def get_llm(provider, model):
 
 def generate_accounting_paper(fintech_product_description, events, provider, model):
     logger.info(f"Starting generate_accounting_paper function with {provider} {model}")
+
+    accounting_paper_template = load_file("accounting_paper_template.md")
+    generate_accounting_paper_instructions = load_file("generate_accounting_paper_instructions.md")
+    generate_accounting_paper_prompt = load_file("generate_accounting_paper_prompt.txt")
+    chart_of_accounts = load_file("chart_of_accounts.md")
 
     prompt = PromptTemplate(
         input_variables=[
@@ -122,6 +120,7 @@ def suggest_events(fintech_product_description, provider, model):
     logger.info(f"Starting suggest_events function with {provider} {model}")
     logger.info(f"Product description: {fintech_product_description}")
 
+    suggest_events_prompt = load_file("suggest_events_prompt.txt")
 
     try:
         prompt = PromptTemplate(
