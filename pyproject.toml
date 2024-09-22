@@ -16,6 +16,8 @@ black = "^24.8.0"
 isort = "^5.13.2"
 pylint = "^3.3.0"
 flake8 = "^7.1.1"
+langchain-openai = "^0.2.0"
+pyyaml = "^6.0.2"
 
 
 [build-system]

@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./src/accounting_paper_generator"
+    ]
+}
