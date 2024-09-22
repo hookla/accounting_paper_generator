@@ -36,7 +36,7 @@ logger.info(f"Current directory: {current_dir}")
 logger.info(f"Project root: {project_root}")
 
 
-def load_file(filename):
+def load_file(filename, apply_cache=True):
     logger.debug(f"Attempting to load file: {filename}")
     # First, try to load from the local directory
     local_path = os.path.join(current_dir, filename)
@@ -45,6 +45,8 @@ def load_file(filename):
         with open(local_path, "r") as file:
             content = file.read()
             logger.debug(f"File content (first 100 chars): {content[:100]}...")
+            if apply_cache:
+                content = f"{{#cached}}\n{content}\n{{/cached}}"
             return content
 
     logger.error(f"File not found: {filename}")
