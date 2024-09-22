@@ -1,5 +1,6 @@
 import os
 import sys
+import streamlit as st
 
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
@@ -10,7 +11,8 @@ from loguru import logger
 # model='claude-3-haiku-20240307'
 model = "claude-3-5-sonnet-20240620"
 
-api_key = os.getenv("ANTHROPIC_API_KEY")
+api_key = st.secrets["anthropic"]["api_key"]
+
 if not api_key:
     logger.error("ANTHROPIC_API_KEY not found in environment variables")
     raise ValueError("ANTHROPIC_API_KEY not set")
