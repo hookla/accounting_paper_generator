@@ -11,10 +11,6 @@ def download_link(content, filename, text):
 
 st.set_page_config(page_title="Accounting Paper Generator", layout="wide")
 
-
-def set_sample_description():
-    st.session_state.product_description = "simple peer to peer transfer between 2 customers in the same branch"
-
 # Sidebar
 with st.sidebar:
     st.title("Controls")
@@ -49,16 +45,16 @@ st.markdown("Enter a detailed description of the product or service.")
 
 product_description = st.text_area(
     "Product Description",
+    value=st.session_state.get("product_description", ""),
     height=200,
     help="Enter a detailed description of the product or service.",
+    key="product_description_input"
 )
+st.session_state.product_description = product_description
 
-# Step 2: Events st.header("Step 2: Events")
+# Step 2: Events
 st.header("Step 2: Events")
 st.markdown("List the events related to your product or service.")
-
-if "events" not in st.session_state:
-    st.session_state.events = ""
 
 if st.button("Suggest Events", key="suggest_events_button"):
     if not product_description:
@@ -67,91 +63,87 @@ if st.button("Suggest Events", key="suggest_events_button"):
         with st.spinner("Generating event suggestions..."):
             try:
                 suggested_events = suggest_events(product_description, llm_provider, llm_model)
-                st.session_state.events = suggested_events  # Assuming this is already formatted as markdown
+                st.session_state.events = suggested_events
                 st.success("Events suggested successfully!")
             except Exception as e:
                 st.error(f"An error occurred while suggesting events: {str(e)}")
 
-# Always show events in an editable text area
 events = st.text_area(
     "Events (Markdown format)",
-    value=st.session_state.events,
+    value=st.session_state.get("events", ""),
     height=300,
     key="events_input"
 )
-
-# Update session state with any changes made in the text area
 st.session_state.events = events
 
-# Display current events (if any) using st.markdown
-if st.session_state.events:
+if events:
     st.markdown("### Current Events:")
-    st.markdown(st.session_state.events)
+    st.markdown(events)
 else:
     st.info("No events suggested yet. Use the 'Suggest Events' button to generate events.")
-         
-                
+
 # Step 3: Generate or Edit Paper
 st.header("Step 3: Generate or Edit Paper")
-st.markdown("Generate an accounting paper or paste/edit an existing one.")
+st.markdown("Generate an accounting paper or edit the existing one.")
 
-if "accounting_paper" not in st.session_state:
-    st.session_state.accounting_paper = ""
+if st.button("Generate Paper", key="generate_paper_button"):
+    if not product_description or not events:
+        st.error("Please provide both a product description and a list of events.")
+    elif not llm_config:
+        st.error("Error loading LLM configuration. Please check the configuration file and logs.")
+    else:
+        with st.spinner("Generating accounting paper..."):
+            try:
+                paper = generate_accounting_paper(product_description, events, llm_provider, llm_model)
+                st.session_state.accounting_paper = paper
+                st.success("Paper generated successfully!")
+            except Exception as e:
+                st.error(f"An error occurred while generating the paper: {str(e)}")
 
-paper_edit_mode = st.toggle("Edit Paper", value=False, key="paper_edit_toggle")
+accounting_paper = st.text_area(
+    "Accounting Paper",
+    value=st.session_state.get("accounting_paper", ""),
+    height=400,
+    key="paper_input"
+)
+st.session_state.accounting_paper = accounting_paper
 
-if paper_edit_mode:
-    st.session_state.accounting_paper = st.text_area(
-        "Accounting Paper", 
-        value=st.session_state.accounting_paper, 
-        height=400,
-        key="paper_input"
+if accounting_paper:
+    st.markdown("### Current Paper:")
+    st.markdown(accounting_paper, unsafe_allow_html=True)
+    download_button = download_link(
+        accounting_paper, "accounting_paper.txt", "Download Paper"
     )
-else:
-    if st.session_state.accounting_paper:
-        st.markdown(st.session_state.accounting_paper, unsafe_allow_html=True)
-    
-    if st.button("Generate Paper", key="generate_paper_button"):
-        if not product_description or not st.session_state.events:
-            st.error("Please provide both a product description and a list of events.")
-        elif not llm_config:
-            st.error("Error loading LLM configuration. Please check the configuration file and logs.")
-        else:
-            with st.spinner("Generating accounting paper..."):
-                try:
-                    paper = generate_accounting_paper(product_description, st.session_state.events, llm_provider, llm_model)
-                    st.session_state.accounting_paper = paper
-                    st.markdown("### Generated Paper:")
-                    st.markdown(paper, unsafe_allow_html=True)
-                    download_button = download_link(
-                        paper, "accounting_paper.txt", "Download Paper"
-                    )
-                    st.markdown(download_button, unsafe_allow_html=True)
-                except Exception as e:
-                    st.error(f"An error occurred while generating the paper: {str(e)}")
+    st.markdown(download_button, unsafe_allow_html=True)
 
 # Step 4: Generate Test Data and Config Template
 st.header("Step 4: Generate Test Data and Config Template")
-st.markdown("Click the button below to generate test data and a config template based on the accounting paper.")
+st.markdown("Generate test data and a config template based on the accounting paper.")
 
 if st.button("Generate Test Data and Config Template", key="generate_test_data_button"):
-    if not st.session_state.accounting_paper:
+    if not accounting_paper:
         st.error("Please generate or paste an accounting paper first.")
     elif not llm_config:
         st.error("Error loading LLM configuration. Please check the configuration file and logs.")
     else:
         with st.spinner("Generating test data and config template..."):
             try:
-                test_data_and_template = generate_test_data_and_template(st.session_state.accounting_paper, llm_provider, llm_model)
-                st.markdown("### Generated Test Data and Config Template:")
-                st.code(test_data_and_template, language="python")
-                
-                download_button = download_link(
-                    test_data_and_template, "test_data_and_config_template.py", "Download Test Data and Config Template"
-                )
-                st.markdown(download_button, unsafe_allow_html=True)
+                test_data_and_template = generate_test_data_and_template(accounting_paper, llm_provider, llm_model)
+                st.session_state.test_data_and_template = test_data_and_template
+                st.success("Test data and config template generated successfully!")
             except Exception as e:
                 st.error(f"An error occurred while generating test data and config template: {str(e)}")
+
+if "test_data_and_template" in st.session_state and st.session_state.test_data_and_template:
+    st.markdown("### Generated Test Data and Config Template:")
+    st.code(st.session_state.test_data_and_template, language="python")
+    
+    download_button = download_link(
+        st.session_state.test_data_and_template, 
+        "test_data_and_config_template.py", 
+        "Download Test Data and Config Template"
+    )
+    st.markdown(download_button, unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown("© 2024 Accounting Paper Generator. All rights reserved.")
