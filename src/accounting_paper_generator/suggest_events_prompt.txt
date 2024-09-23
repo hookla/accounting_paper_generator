@@ -5,7 +5,7 @@ Here is the fintech product description:
 {{fintech_product_description}}
 </product_description>
 
-A financial event is an occurrence that results in the transfer or movement of money in the real world. Each event should represent a specific root business event - something that has happened. An event can cause multiple movements of money.  If several things happen at the same time then they are 1 event.
+A financial event is an occurrence that results in the transfer or movement of money in the real world. Each event should represent a specific root business event - something that has happened. An event can cause multiple movements of money. If several things happen at the same time then they are 1 event.
 
 Guidelines for generating events:
 1. Focus only on events that involve actual money transfers or financial impacts in the real world.
@@ -19,7 +19,7 @@ Guidelines for generating events:
 
 Here is an example of a good event:
 <good_event_example>
-Customer A transfers 100 to customer B and pays a fee
+Transfer: Customer A transfers 100 to customer B and pays a fee
 </good_event_example>
 
 Here is an example of a bad event:
@@ -33,26 +33,22 @@ This is one event, not two events, because money can only be moved, not created.
 Format your output as follows:
 Event Name : Trigger
 
-Each event should be separated by a blank line. The Event Name should describe what actually happened in the real world. The Trigger should explain what caused the event to occur.
+The Event Name should describe what actually happened in the real world. The Trigger should explain what caused the event to occur.
 
-Here are two examples of well-formatted events:
+Split the events into Happy Path and Exception Path.
+
+The output should be a markdown list.
 
 <formatting_example>
-User Cash Deposit : User visits a partner ATM and deposits cash
+#### Happy path
+- **User Cash Deposit** : User visits a partner ATM and deposits cash
+- **Merchant Payment**  : User makes a purchase using their linked debit card
+- **event 3 name** : event 3 trigger
 
-Merchant Payment : User makes a purchase using their linked debit card
+#### Exception path
+- **event 4 name** : event 4 trigger
+- **event 5 name** : event 5 trigger
+- **event 6 name** : event 6 trigger
 </formatting_example>
 
-Separate events into Happy Path and Exception Path.
-
-Begin generating the list of financial events now. Do not include any introduction or summary; start directly with the first event. Ensure that each event involves an actual monetary transaction or movement of funds. Use the following structure:
-
-<happy_path>
-[List happy path events here]
-</happy_path>
-
-<exception_path>
-[List exception path events here]
-</exception_path>
-
-
+Begin generating the financial events now. Do not include any introduction or summary; start directly with the first event. Ensure that each event involves an actual monetary transaction or movement of funds.

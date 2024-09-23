@@ -146,16 +146,36 @@ def suggest_events(fintech_product_description, provider, model):
         result = chain.invoke(
             {"fintech_product_description": fintech_product_description}
         )
-        events = [
-            event.strip() for event in result.content.split("\n") if event.strip()
-        ]
-        logger.info(f"Successfully suggested {len(events)} events")
-        return events
+        logger.info(f"Successfully suggested events")
+        return result.content
     except Exception as e:
         logger.error(f"Error suggesting events: {str(e)}")
         logger.error(f"Error type: {type(e)}")
         logger.error(f"Error args: {e.args}")
         raise
 
+
+def generate_test_data_and_template(accounting_paper, provider, model):
+    logger.info(f"Starting generate_test_data_and_template function with {provider} {model}")
+
+    generate_test_data_prompt = load_file("generate_test_data_and_template_prompt.txt")
+
+    prompt = PromptTemplate(
+        input_variables=["accounting_paper"],
+        template=generate_test_data_prompt,
+        template_format="jinja2",
+    )
+
+    llm = get_llm(provider, model)
+    chain = prompt | llm
+
+    try:
+        result = chain.invoke({"accounting_paper": accounting_paper})
+        logger.info("Successfully generated test data and template")
+        return result.content
+    except Exception as e:
+        logger.error(f"Error generating test data and template: {str(e)}")
+        raise
+    
 # Log that the module has been loaded
 logger.info("Backend module loaded successfully")

@@ -1,0 +1,112 @@
+You are an expert in accounting, financial technology, and test data generation. Your task is to analyze an accounting paper, convert it into a structured template for a financial transaction system, and generate corresponding test data. Here is the accounting paper you need to analyze:
+
+<accounting_paper>
+{{accounting_paper}}
+</accounting_paper>
+
+First, familiarize yourself with the following object definitions:
+
+```python
+import uuid
+from typing import Any, Dict, List, Union
+from pydantic import BaseModel
+
+class TemplateLeg(BaseModel):
+    leg_number: int
+    debit_account: str
+    credit_account: str
+    code: int
+    amount: str
+
+class Template(BaseModel):
+    template_id: int
+    name: str
+    status: str
+    description: str
+    created_date: int
+    created_by: str
+    variables: Dict[str, Union[int, str]]
+    validations: Dict[str, str]
+    legs: List[TemplateLeg]
+
+class Event(BaseModel):
+    event_id: uuid.UUID
+    template_id: int
+    ledger: int
+    timestamp: int
+    metadata: Dict[str, Any]
+
+class Transfer(BaseModel):
+    id: int = 0
+    debit_account_id: int
+    credit_account_id: int
+    amount: int
+    ledger: int
+    code: int
+    user_data_128: int  # event_id
+```
+
+Now, follow these steps to complete the task:
+FOR EACH EVENT IN THE ACCOUNTING PAPER:
+
+1. Template Creation:
+   - Create a Template object that represents the transaction described in the accounting paper.
+   - Assign a unique template_id (e.g., 123).
+   - Set an appropriate name and description for the template.
+   - Set the status to "active".
+   - Use a realistic created_date (integer, seconds since epoch) and set created_by to "system".
+   - Define any necessary variables in the variables dictionary.
+   - Include any required validations in the validations dictionary.
+   - Create TemplateLeg objects for each leg of the transaction, ensuring that:
+     - leg_number is sequential starting from 1.
+     - debit_account and credit_account are descriptive strings.
+     - code is a unique integer for each leg.
+     - amount is a string representing how the amount should be calculated.
+
+2. Event Generation:
+   - Create an Event object that corresponds to the template:
+     - Generate a new UUID for event_id.
+     - Use the template_id from the created template.
+     - Assign an appropriate ledger number (e.g., 1).
+     - Use a realistic timestamp (integer, seconds since epoch).
+     - Include necessary data in the metadata dictionary, such as:
+       - amount: A realistic transaction amount.
+       - accounts: Dictionary with 'from' and 'to' account IDs (use large integers for account IDs).
+
+3. Transfer Generation:
+   - For each leg in the template, create a corresponding Transfer object:
+     - Start id from 0 and increment for each transfer.
+     - Use realistic account IDs for debit_account_id and credit_account_id.
+     - Set amount based on the event metadata or calculate it according to the template.
+     - Use the same ledger as in the Event.
+     - Use the code specified in the TemplateLeg.
+     - Set user_data_128 to the integer representation of the event_id.
+
+4. Output Format:
+   Present your results in the following format:
+
+```python
+# Template
+templates = {
+    template_id: Template(
+        # Template details here
+    )
+}
+
+# Event
+event = Event(
+    # Event details here
+)
+
+# Transfers
+transfers = [
+    Transfer(
+        # Transfer details here
+    ),
+    # Additional Transfer objects as needed
+]
+```
+
+Ensure all generated data is consistent and realistic for the described transaction. Use your expertise in accounting and financial technology to create a template that accurately represents the transaction described in the accounting paper. Generate test data that would be typical for such a transaction in a real-world scenario.
+
+When you're done, present your complete output, including the template, event, and transfers, formatted as Python code. Do not include any explanations or comments outside of the code block unless they are part of the template description or variable names.

@@ -13,6 +13,8 @@
         ├── chart_of_accounts.md
         ├── generate_accounting_paper_instructions.md
         ├── generate_accounting_paper_prompt.txt
+        ├── generate_test_data_and_template_prompt.txt
+        ├── llm_config.yaml
         └── suggest_events_prompt.txt
 
-3 directories, 13 files
+3 directories, 15 files
