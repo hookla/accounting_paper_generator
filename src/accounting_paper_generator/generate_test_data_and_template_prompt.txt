@@ -47,15 +47,14 @@ class Transfer(BaseModel):
 ```
 
 Now, follow these steps to complete the task:
-FOR EACH EVENT IN THE ACCOUNTING PAPER:
-
+FOR EACH EVENT IN THE ACCOUNTING PAPER create the template including a leg for each tranfer:
 1. Template Creation:
    - Create a Template object that represents the transaction described in the accounting paper.
    - Assign a unique template_id (e.g., 123).
    - Set an appropriate name and description for the template.
    - Set the status to "active".
    - Use a realistic created_date (integer, seconds since epoch) and set created_by to "system".
-   - Define any necessary variables in the variables dictionary.
+   - Define any necessary variables in the variables dictionary.  The variables will include the account codes specified in the accounting treatment.
    - Include any required validations in the validations dictionary.
    - Create TemplateLeg objects for each leg of the transaction, ensuring that:
      - leg_number is sequential starting from 1.
@@ -63,6 +62,7 @@ FOR EACH EVENT IN THE ACCOUNTING PAPER:
      - code is a unique integer for each leg.
      - amount is a string representing how the amount should be calculated.
 
+FOR EACH EVENT IN THE ACCOUNTING PAPER create the test event and resulting transfers
 2. Event Generation:
    - Create an Event object that corresponds to the template:
      - Generate a new UUID for event_id.
