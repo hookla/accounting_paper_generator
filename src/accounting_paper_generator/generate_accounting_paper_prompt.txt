@@ -24,6 +24,8 @@ You are an expert accountant tasked with generating an accounting paper based on
 {{events}}
 </events>
 
+4.1 for each event note the relevant parts of ifrs that are relevant any you think or might be relevsnt.
+
 5. Study the provided chart of accounts:
 
 <chart_of_accounts>
