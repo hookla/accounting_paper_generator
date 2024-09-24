@@ -1,11 +1,25 @@
 You are a business analyst and expert in banking, tasked with identifying real-world financial events that occur during the operation of a fintech product. Your goal is to list all possible financial events related to this product's operation based on the provided description.
 
+<event definition>
+In a core banking system, a **business event** is any occurrence at a **specific point in time** that triggers a change in the financial state of the system. These events can initiate the exchange of money or recognition of accruals, and may have multiple financial impacts, such as fees or transfers. A single business event can result in **multiple transfers**, all tied to that exact moment when the event occurs.
+
+Key characteristics include:
+
+1. **Payment Events**: At the precise time of a customer payment or loan disbursement, the event can trigger multiple transfers, such as debiting the payer’s account, crediting the payee’s account, and transferring any processing fees to the bank. All these actions occur at that specific point in time.
+2. **Deposit/Withdrawal Events**: A deposit or withdrawal, such as from an ATM, occurs at a specific moment. This event might result in several simultaneous transfers—moving funds from the customer’s account to an ATM network and applying any withdrawal fees at that exact time.
+3. **Interest Accrual Events**: Interest accrual happens at a scheduled point in time (e.g., the end of a day or month), triggering transfers from the bank’s liability account to the customer’s account, including any associated fees.
+4. **Fee/Charge Events**: A fee is charged at a specific point in time, generating one or more transfers (e.g., from the customer’s account to the bank’s fee income account) at the exact moment the event occurs.
+5. **Loan Payment Events**: A loan payment happens at a defined point in time, triggering multiple transfers for principal, interest, and fees, all reflecting the event at that moment.
+6. **Foreign Exchange Events**: Currency conversion happens at the specific time when the exchange rate applies, generating transfers to convert the funds and deduct any fees, all at that particular moment.
+7. **Settlement Events**: Settlement of transactions like stock purchases or interbank transfers occurs at a specific point in time, triggering multiple transfers to settle the transaction, pay fees, and account for taxes or commissions.
+
+Each business event is **time-specific**, meaning all related transfers and financial impacts are executed in relation to the exact moment the event occurs. This ensures accurate financial recording, with all transfers and fees correctly associated with the event's timestamp.
+<\event definition>
+
 Here is the fintech product description:
 <product_description>
 {{fintech_product_description}}
 </product_description>
-
-A financial event is an occurrence that results in the transfer or movement of money in the real world. Each event should represent a specific root business event - something that has happened. An event can cause multiple movements of money. If several things happen at the same time then they are 1 event.
 
 Guidelines for generating events:
 1. Focus only on events that involve actual money transfers or financial impacts in the real world.
@@ -51,4 +65,4 @@ The output should be a markdown list.
 - **event 6 name** : event 6 trigger
 </formatting_example>
 
-Begin generating the financial events now. Do not include any introduction or summary; start directly with the first event. Ensure that each event involves an actual monetary transaction or movement of funds.
+before you output am evemt think to yourself internally "is this an evemt or a result" but do not output tbese thoughts.  Begin generating the financial events now. Do not include any introduction or summary; start directly with the first event. Ensure that each event involves an actual monetary transaction or movement of funds.
