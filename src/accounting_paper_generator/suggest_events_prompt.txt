@@ -1,7 +1,7 @@
 Consider this financial product:
 
 <product_description>
-{{product name}}
+{{fintech_product_description}}
 </product_description>
 
 Provide a list of core financial events for this product. Each event must directly cause monetary transactions or immediate changes in financial obligations. Adhere to these principles:
