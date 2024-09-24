@@ -1,74 +1,68 @@
-You are a business analyst and expert in banking, tasked with identifying real-world financial events that occur during the operation of a fintech product. 
-Your goal is to list all possible financial events related to this product's operation based on the provided description.
-
 Consider this financial product:
 
-<product_description>
-{{fintech_product_description}}
-</product_description>
+<product description>
+{{product name}}
+</product description>
 
-For this product, please provide a comprehensive list of events that directly cause or are closely associated with financial transactions. Use the following guidelines to generate your list:
+For this product, provide a list of events that directly cause financial transactions or immediate changes in financial obligations. Use the following guidelines:
 
-1. Primary Financial Events:
-   Identify independent, significant occurrences that directly result in money movement, changes in financial obligations, or alterations to a user's financial state within the system. These should be initiated by users, external systems, or represent important financial state changes.
+1. Direct Financial Impact:
+   Only include events that result in immediate money movement, changes in account balances, or alterations to financial obligations. The event must have a direct, measurable financial consequence.
 
-2. Financial Consequences:
-   For each primary event, consider the direct financial actions or consequences that automatically follow.
+2. Complete Transactions:
+   Each event should capture the full scope of a financial transaction, including any associated fees, charges, or immediate follow-on actions. Avoid separating closely related financial actions into multiple events.
 
-3. Recurring Financial Processes:
-   Identify any time-based or regularly occurring system processes that involve financial transactions or calculations, not tied to specific primary events.
+3. Triggering Actions:
+   Events can be triggered by user actions, system processes, or external factors, but must always lead to a direct financial outcome.
+
+4. Immediate vs. Potential:
+   Focus on events with immediate financial impact. Exclude events that only create the potential for future financial transactions without causing immediate changes.
+
+5. Measurable Outcomes:
+   Each event should result in a quantifiable financial change, such as specific amounts being transferred, added, or deducted.
 
 Important Guidelines:
-- Focus only on events that directly involve financial transactions or significant changes in financial state.
-- Ensure each event is truly independent and not a consequence of another financial event.
-- Do not include non-financial events or actions unless they have direct, significant financial implications.
-- For recurring processes, only include those that involve financial calculations or transactions.
-- Consider events that are specific and unique to the given financial product.
+- Exclude administrative or policy changes that don't immediately affect financial states (e.g., credit limit increases without immediate borrowing).
+- Omit events that are purely informational or preparatory unless they directly trigger a financial transaction.
+- Ensure each event represents a distinct, complete financial action or consequence, not a step in a larger process.
+- For recurring processes, only include the instance that causes the actual financial change.
+- Combine related financial actions (e.g., principal movement and fee application) into a single event when they occur simultaneously as part of the same process.
 
-After considering the above, provide your output in the following JSON format:
+Provide your output in the following JSON format:
 
 ```json
 [
   {
     "event_name": "<event name>",
-    "trigger": "description of the event trigger"
-  },
-  {
-    "event_name": "<event name>",
-    "trigger": "description of the event trigger"
+    "trigger": "description of the event trigger",
+    "financial_impact": "detailed description of the immediate, measurable financial consequence, including all related financial actions"
   }
 ]
 ```
 
-Example (for a simple loan product):
+Example (for a salary advance product):
 ```json
 [
   {
-    "event_name": "Loan Disbursement",
-    "trigger": "Loan application is approved and funds are released to the borrower"
+    "event_name": "Salary Advance Disbursement",
+    "trigger": "Approved salary advance request is processed",
+    "financial_impact": "Advance amount is transferred to employee's account, increasing their balance. Service fee is simultaneously deducted from the advance amount or charged to the employee's account. A repayment obligation for the full advance amount is created."
   },
   {
-    "event_name": "Regular Payment Received",
-    "trigger": "Borrower makes a scheduled loan repayment"
-  },
-  {
-    "event_name": "Late Payment Fee Applied",
-    "trigger": "Payment due date passes without receiving the scheduled payment"
-  },
-  {
-    "event_name": "Early Repayment",
-    "trigger": "Borrower initiates full loan repayment before the loan term ends"
-  },
-  {
-    "event_name": "Interest Accrual",
-    "trigger": "Daily or monthly process to calculate and add interest to the loan balance"
+    "event_name": "Payroll Deduction",
+    "trigger": "Employer processes payroll including salary advance repayment",
+    "financial_impact": "Advanced amount plus any fees (if not deducted earlier) are withheld from employee's salary. Employee receives reduced salary payment. Advance repayment obligation is cleared."
   }
 ]
 ```
 
-Please provide a similar list of financial events and processes for this product in the specified JSON format, ensuring that the events are specific and relevant to the given product.
+Please provide a similar list of financial events in the specified JSON format, ensuring that each event captures complete financial transactions with all associated actions and has a direct, immediate, and measurable financial impact.
 
 
-before you output an event think to yourself internally "is this an evemt or a result" but do not output tbese thoughts.  
-Begin generating the financial events now. Do not include any introduction or summary; start directly with the first event. 
-Ensure that each event involves an actual monetary transaction or movement of funds.
+
+
+
+
+
+
+
