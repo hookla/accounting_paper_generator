@@ -1,68 +1,74 @@
-You are a business analyst and expert in banking, tasked with identifying real-world financial events that occur during the operation of a fintech product. Your goal is to list all possible financial events related to this product's operation based on the provided description.
+You are a business analyst and expert in banking, tasked with identifying real-world financial events that occur during the operation of a fintech product. 
+Your goal is to list all possible financial events related to this product's operation based on the provided description.
 
-<event definition>
-In a core banking system, a **business event** is any occurrence at a **specific point in time** that triggers a change in the financial state of the system. These events can initiate the exchange of money or recognition of accruals, and may have multiple financial impacts, such as fees or transfers. A single business event can result in **multiple transfers**, all tied to that exact moment when the event occurs.
+Consider this financial product:
 
-Key characteristics include:
-
-1. **Payment Events**: At the precise time of a customer payment or loan disbursement, the event can trigger multiple transfers, such as debiting the payer’s account, crediting the payee’s account, and transferring any processing fees to the bank. All these actions occur at that specific point in time.
-2. **Deposit/Withdrawal Events**: A deposit or withdrawal, such as from an ATM, occurs at a specific moment. This event might result in several simultaneous transfers—moving funds from the customer’s account to an ATM network and applying any withdrawal fees at that exact time.
-3. **Interest Accrual Events**: Interest accrual happens at a scheduled point in time (e.g., the end of a day or month), triggering transfers from the bank’s liability account to the customer’s account, including any associated fees.
-4. **Fee/Charge Events**: A fee is charged at a specific point in time, generating one or more transfers (e.g., from the customer’s account to the bank’s fee income account) at the exact moment the event occurs.
-5. **Loan Payment Events**: A loan payment happens at a defined point in time, triggering multiple transfers for principal, interest, and fees, all reflecting the event at that moment.
-6. **Foreign Exchange Events**: Currency conversion happens at the specific time when the exchange rate applies, generating transfers to convert the funds and deduct any fees, all at that particular moment.
-7. **Settlement Events**: Settlement of transactions like stock purchases or interbank transfers occurs at a specific point in time, triggering multiple transfers to settle the transaction, pay fees, and account for taxes or commissions.
-
-Each business event is **time-specific**, meaning all related transfers and financial impacts are executed in relation to the exact moment the event occurs. This ensures accurate financial recording, with all transfers and fees correctly associated with the event's timestamp.
-<\event definition>
-
-Here is the fintech product description:
 <product_description>
 {{fintech_product_description}}
 </product_description>
 
-Guidelines for generating events:
-1. Focus only on events that involve actual money transfers or financial impacts in the real world.
-2. Consider all aspects of the product's operation, including user transactions, fees, interest, and processes that affect account balances.
-3. Include events related to user actions, system processes, and external interactions that have financial implications.
-4. Think about events that might occur at different stages: account opening, regular usage, exceptional circumstances, and account closure.
-5. Be comprehensive, but ensure each event is distinct and relevant to the described product.
-6. Emphasize real-world actions and consequences rather than internal accounting processes.
-7. Do not include non-financial events such as user sign-ups or account creations unless they directly involve a monetary transaction.
-8. Remember money can not be created only moved.
+For this product, please provide a comprehensive list of events that directly cause or are closely associated with financial transactions. Use the following guidelines to generate your list:
 
-Here is an example of a good event:
-<good_event_example>
-Transfer: Customer A transfers 100 to customer B and pays a fee
-</good_event_example>
+1. Primary Financial Events:
+   Identify independent, significant occurrences that directly result in money movement, changes in financial obligations, or alterations to a user's financial state within the system. These should be initiated by users, external systems, or represent important financial state changes.
 
-Here is an example of a bad event:
-<bad_event_example>
-Event 1: 100 deducted from customer A
-Event 2: 100 added to customer B
-</bad_event_example>
+2. Financial Consequences:
+   For each primary event, consider the direct financial actions or consequences that automatically follow.
 
-This is one event, not two events, because money can only be moved, not created. If event 2 happened and not event 1, then money would have been created.
+3. Recurring Financial Processes:
+   Identify any time-based or regularly occurring system processes that involve financial transactions or calculations, not tied to specific primary events.
 
-Format your output as follows:
-Event Name : Trigger
+Important Guidelines:
+- Focus only on events that directly involve financial transactions or significant changes in financial state.
+- Ensure each event is truly independent and not a consequence of another financial event.
+- Do not include non-financial events or actions unless they have direct, significant financial implications.
+- For recurring processes, only include those that involve financial calculations or transactions.
+- Consider events that are specific and unique to the given financial product.
 
-The Event Name should describe what actually happened in the real world. The Trigger should explain what caused the event to occur.
+After considering the above, provide your output in the following JSON format:
 
-Split the events into Happy Path and Exception Path.
+```json
+[
+  {
+    "event_name": "<event name>",
+    "trigger": "description of the event trigger"
+  },
+  {
+    "event_name": "<event name>",
+    "trigger": "description of the event trigger"
+  }
+]
+```
 
-The output should be a markdown list.
+Example (for a simple loan product):
+```json
+[
+  {
+    "event_name": "Loan Disbursement",
+    "trigger": "Loan application is approved and funds are released to the borrower"
+  },
+  {
+    "event_name": "Regular Payment Received",
+    "trigger": "Borrower makes a scheduled loan repayment"
+  },
+  {
+    "event_name": "Late Payment Fee Applied",
+    "trigger": "Payment due date passes without receiving the scheduled payment"
+  },
+  {
+    "event_name": "Early Repayment",
+    "trigger": "Borrower initiates full loan repayment before the loan term ends"
+  },
+  {
+    "event_name": "Interest Accrual",
+    "trigger": "Daily or monthly process to calculate and add interest to the loan balance"
+  }
+]
+```
 
-<formatting_example>
-#### Happy path
-- **User Cash Deposit** : User visits a partner ATM and deposits cash
-- **Merchant Payment**  : User makes a purchase using their linked debit card
-- **event 3 name** : event 3 trigger
+Please provide a similar list of financial events and processes for this product in the specified JSON format, ensuring that the events are specific and relevant to the given product.
 
-#### Exception path
-- **event 4 name** : event 4 trigger
-- **event 5 name** : event 5 trigger
-- **event 6 name** : event 6 trigger
-</formatting_example>
 
-before you output am evemt think to yourself internally "is this an evemt or a result" but do not output tbese thoughts.  Begin generating the financial events now. Do not include any introduction or summary; start directly with the first event. Ensure that each event involves an actual monetary transaction or movement of funds.
+before you output an event think to yourself internally "is this an evemt or a result" but do not output tbese thoughts.  
+Begin generating the financial events now. Do not include any introduction or summary; start directly with the first event. 
+Ensure that each event involves an actual monetary transaction or movement of funds.
