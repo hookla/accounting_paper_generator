@@ -1,68 +1,64 @@
 Consider this financial product:
 
-<product description>
+<product_description>
 {{product name}}
-</product description>
+</product_description>
 
-For this product, provide a list of events that directly cause financial transactions or immediate changes in financial obligations. Use the following guidelines:
+Provide a list of core financial events for this product. Each event must directly cause monetary transactions or immediate changes in financial obligations. Adhere to these principles:
 
-1. Direct Financial Impact:
-   Only include events that result in immediate money movement, changes in account balances, or alterations to financial obligations. The event must have a direct, measurable financial consequence.
+<principles>
+1. Direct Financial Impact: 
+   Events must result in immediate money movement or changes in financial obligations.
 
-2. Complete Transactions:
-   Each event should capture the full scope of a financial transaction, including any associated fees, charges, or immediate follow-on actions. Avoid separating closely related financial actions into multiple events.
+2. Complete Transactions: 
+   Capture the full scope of each financial transaction, including all associated actions (e.g., principal movements, fee applications) in a single event.
 
-3. Triggering Actions:
-   Events can be triggered by user actions, system processes, or external factors, but must always lead to a direct financial outcome.
+3. Distinct Events: 
+   Each event should represent a unique, significant financial action. Avoid listing steps of a larger process as separate events.
 
-4. Immediate vs. Potential:
-   Focus on events with immediate financial impact. Exclude events that only create the potential for future financial transactions without causing immediate changes.
+4. Measurable Outcomes: 
+   Every event must have quantifiable financial consequences.
 
-5. Measurable Outcomes:
-   Each event should result in a quantifiable financial change, such as specific amounts being transferred, added, or deducted.
+5. Immediate Effects: 
+   Focus solely on events with instant financial impact. Exclude potential future impacts or administrative changes without immediate financial consequences.
+</principles>
 
-Important Guidelines:
-- Exclude administrative or policy changes that don't immediately affect financial states (e.g., credit limit increases without immediate borrowing).
-- Omit events that are purely informational or preparatory unless they directly trigger a financial transaction.
-- Ensure each event represents a distinct, complete financial action or consequence, not a step in a larger process.
-- For recurring processes, only include the instance that causes the actual financial change.
-- Combine related financial actions (e.g., principal movement and fee application) into a single event when they occur simultaneously as part of the same process.
+<key_exclusions>
+- Administrative or policy changes without direct financial impact
+- Purely informational or preparatory actions
+- Events that only enable future transactions without immediate financial effects
+</key_exclusions>
 
-Provide your output in the following JSON format:
+<output_format>
+Provide your list in JSON format as follows:
 
 ```json
 [
   {
-    "event_name": "<event name>",
-    "trigger": "description of the event trigger",
-    "financial_impact": "detailed description of the immediate, measurable financial consequence, including all related financial actions"
+    "event_name": "<concise, descriptive name>",
+    "trigger": "specific action or condition initiating the event",
+    "financial_impact": "comprehensive description of all immediate financial consequences, including amounts moved, obligations created or changed, and any fees applied"
   }
 ]
 ```
+</output_format>
 
+<example>
 Example (for a salary advance product):
 ```json
 [
   {
     "event_name": "Salary Advance Disbursement",
-    "trigger": "Approved salary advance request is processed",
-    "financial_impact": "Advance amount is transferred to employee's account, increasing their balance. Service fee is simultaneously deducted from the advance amount or charged to the employee's account. A repayment obligation for the full advance amount is created."
+    "trigger": "Approval of employee's salary advance request",
+    "financial_impact": "1) Advance amount (e.g., $500) transferred to employee's account. 2) Service fee (e.g., $5) deducted from advance or charged separately. 3) Repayment obligation for $500 created."
   },
   {
-    "event_name": "Payroll Deduction",
-    "trigger": "Employer processes payroll including salary advance repayment",
-    "financial_impact": "Advanced amount plus any fees (if not deducted earlier) are withheld from employee's salary. Employee receives reduced salary payment. Advance repayment obligation is cleared."
+    "event_name": "Advance Repayment via Payroll Deduction",
+    "trigger": "Processing of payroll following salary advance",
+    "financial_impact": "1) Advance amount ($500) plus any outstanding fees withheld from employee's salary. 2) Net salary after deduction paid to employee. 3) Advance repayment obligation cleared."
   }
 ]
 ```
+</example>
 
-Please provide a similar list of financial events in the specified JSON format, ensuring that each event captures complete financial transactions with all associated actions and has a direct, immediate, and measurable financial impact.
-
-
-
-
-
-
-
-
-
+Generate a similar list of core financial events ensuring each event represents a complete, distinct financial transaction with immediate and quantifiable impact.
