@@ -29,9 +29,8 @@ Provide a list of core financial events for this product. Each event must direct
 - Events that only enable future transactions without immediate financial effects
 </key_exclusions>
 
+Provide your list in JSON format as follows. Do not include and prefix or suffix:
 <output_format>
-Provide your list in JSON format as follows:
-
 ```json
 [
   {

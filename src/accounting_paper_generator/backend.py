@@ -177,5 +177,53 @@ def generate_test_data_and_template(accounting_paper, provider, model):
         logger.error(f"Error generating test data and template: {str(e)}")
         raise
     
+
+
+def enhance_product_description(product_description, provider, model):
+    logger.info(f"Starting enhance_product_description function with {provider} {model}")
+    logger.debug(f"Product description: {product_description[:100]}...")  # Log first 100 chars for debugging
+
+    try:
+        enhance_description_prompt = load_file("enhance_product_description_prompt.txt")
+        logger.debug(f"Loaded enhance_product_description_prompt.txt")
+    except Exception as e:
+        logger.error(f"Error loading enhance_product_description_prompt.txt: {str(e)}")
+        raise
+
+    try:
+        prompt = PromptTemplate(
+            input_variables=["product_description"],
+            template=enhance_description_prompt,
+            template_format="jinja2",
+        )
+        logger.debug("Created PromptTemplate")
+    except Exception as e:
+        logger.error(f"Error creating PromptTemplate: {str(e)}")
+        raise
+
+    try:
+        llm = get_llm(provider, model)
+        logger.debug(f"Got LLM: {provider} {model}")
+    except Exception as e:
+        logger.error(f"Error getting LLM: {str(e)}")
+        raise
+
+    chain = prompt | llm
+
+    try:
+        result = chain.invoke({"product_description": product_description})
+        logger.info("Successfully enhanced product description")
+        logger.debug(f"Enhanced description (first 100 chars): {result.content[:100]}...")
+        return result.content
+    except Exception as e:
+        logger.error(f"Error enhancing product description: {str(e)}")
+        logger.error(f"Error type: {type(e)}")
+        logger.error(f"Error args: {e.args}")
+        raise
+
+
+
+
+
 # Log that the module has been loaded
 logger.info("Backend module loaded successfully")

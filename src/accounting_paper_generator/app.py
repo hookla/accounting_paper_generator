@@ -3,7 +3,7 @@ import yaml
 import os
 
 import streamlit as st
-from backend import generate_accounting_paper, suggest_events, generate_test_data_and_template, llm_config
+from backend import generate_accounting_paper, suggest_events, generate_test_data_and_template, llm_config, enhance_product_description
 
 def download_link(content, filename, text):
     b64 = base64.b64encode(content.encode()).decode()
@@ -39,6 +39,10 @@ with st.sidebar:
 # Main content
 st.title("Accounting Paper Generator")
 
+
+
+
+
 # Step 1: Product Description
 st.header("Step 1: Product Description")
 st.markdown("Enter a detailed description of the product or service.")
@@ -50,7 +54,33 @@ product_description = st.text_area(
     help="Enter a detailed description of the product or service.",
     key="product_description_input"
 )
+
+# Update session state
 st.session_state.product_description = product_description
+
+# Button for enhancing product description
+if st.button("Enhance Product Description", key="enhance_description_button"):
+    if not product_description:
+        st.error("Please provide a product description to enhance.")
+    else:
+        with st.spinner("Enhancing product description..."):
+            try:
+                enhanced_description = enhance_product_description(
+                    product_description, 
+                    llm_provider, 
+                    llm_model
+                )
+                st.session_state.product_description = enhanced_description
+                st.success("Product description enhanced successfully!")
+            except Exception as e:
+                st.error(f"An error occurred while enhancing the product description: {str(e)}")
+
+# Display enhanced description if available
+if st.session_state.get("product_description"):
+    st.markdown("### Enhanced Product Description")
+    st.write(st.session_state.product_description)
+
+
 
 # Step 2: Events
 st.header("Step 2: Events")
@@ -77,10 +107,15 @@ events = st.text_area(
 st.session_state.events = events
 
 if events:
-    st.markdown("### Current Events:")
     st.markdown(events)
 else:
     st.info("No events suggested yet. Use the 'Suggest Events' button to generate events.")
+
+
+
+
+
+
 
 # Step 3: Generate or Edit Paper
 st.header("Step 3: Generate or Edit Paper")
