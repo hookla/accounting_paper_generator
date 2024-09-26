@@ -21,6 +21,8 @@ Provide a list of core financial events for this product. Each event must direct
 
 5. Immediate Effects: 
    Focus solely on events with instant financial impact. Exclude potential future impacts or administrative changes without immediate financial consequences.
+
+6. Examples should be consistent with each other.  The values use should be consistent and make sense in the context of all of the examples.
 </principles>
 
 <key_exclusions>
