@@ -5,13 +5,13 @@ from accounting_paper_generator.ui.components import (accounting_paper, events,
                                                       test_data)
 from accounting_paper_generator.ui.sidebar import render_sidebar
 
-st.set_page_config(page_title="xxxAccounting Paper Generator", layout="wide")
+st.set_page_config(page_title="Accounting Paper Generator", layout="wide")
 
 
 def main():
     render_sidebar()
 
-    st.title("xxxAccounting Paper Generatorxx")
+    st.title("Accounting Paper Generator")
 
     product_description.render()
     events.render()
