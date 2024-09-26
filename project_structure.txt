@@ -5,16 +5,18 @@
 ├── project_structure.txt
 ├── pyproject.toml
 ├── README.md
-└── src
-    └── accounting_paper_generator
-        ├── accounting_paper_template.md
-        ├── app.py
-        ├── backend.py
-        ├── chart_of_accounts.md
-        ├── generate_accounting_paper_instructions.md
-        ├── generate_accounting_paper_prompt.txt
-        ├── generate_test_data_and_template_prompt.txt
-        ├── llm_config.yaml
-        └── suggest_events_prompt.txt
+├── src
+│   └── accounting_paper_generator
+│       ├── accounting_paper_template.md
+│       ├── app.py
+│       ├── backend.py
+│       ├── chart_of_accounts.md
+│       ├── enhance_product_description_prompt.txt
+│       ├── generate_accounting_paper_instructions.md
+│       ├── generate_accounting_paper_prompt.txt
+│       ├── generate_test_data_and_template_prompt.txt
+│       ├── llm_config.yaml
+│       └── suggest_events_prompt.txt
+└── test.md
 
-3 directories, 15 files
+3 directories, 17 files

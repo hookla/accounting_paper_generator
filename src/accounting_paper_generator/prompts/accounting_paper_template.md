@@ -37,50 +37,26 @@ This accounting analysis is based on International Financial Reporting Standards
 
 - A brief description of the event, including specific amounts
 - The accounting treatment (using the provided table format with actual amounts)
-- Rationale for the accounting treatment
+- Rationale for the accounting treatment quoting the exact part of the legislation relied on.
 
 **Example:**
 
-### 4.1 Event: User Payment Installment
+### 4.x Event: User Payment Installment
 
-Description: User selects the product option for a purchase of 1,000 and agrees to pay in 4 installments of 250 each. The first installment is due immediately as a down payment.
-
-Accounting Treatment:
-
-| Date | Account | Debit | Credit |
-|------|---------|-----------|------------|
-| 2024-01-15 | **Accounts Receivable (10001)** *(Asset)* | 1,000 | |
-| 2024-01-15 | **Unearned Revenue (20001)** *(Liability)* | | 750 |
-| 2024-01-15 | **Cash (10000)** *(Asset)* | | 250 |
-
-Rationale: The full purchase amount of 1,000 is recorded as a receivable. 750 is recognized as unearned revenue to reflect the future obligation to provide the product/service over the next three installments. The down payment of 250 is recorded as cash received.
-
-### 4.2 Event: Late Payment Fee
-
-Description: User fails to make the second scheduled installment payment of 250 by the due date, resulting in a late payment fee of 25 being charged.
+Description: An intra-branch transfer is executed after the sender confirms the transaction through authentication. The transfer amount is debited from the sender's account, credited to the recipient's account, and a transfer fee is deducted from the sender's account.
 
 Accounting Treatment:
 
-| Date | Account | Debit | Credit  |
-|------|---------|-----------|------------|
-| 2024-02-15 | **Accounts Receivable (10001)** *(Asset)* | 25 | |
-| 2024-02-15 | **Late Fee Revenue (40002)** *(Income)* | | 25 |
+Date Account Debit Credit
+2024-01-20 Demand Deposits (2010) (Asset) 1,000 
+2024-01-20 Demand Deposits (2010) (Asset)  1,000
+2024-01-20 Transfer Fees (Expense) 2 
+2024-01-20 Digital Banking Service Fees (4140) (Income)  2
+Regulation and Paragraph:
+IFRS 15, Paragraph 31: Revenue is recognized when the performance obligation is satisfied by transferring a service to the customer.
 
-Rationale: The 25 late payment fee is recognized as revenue when it's charged, with a corresponding increase in the accounts receivable balance.
-
-### 4.3 Event: Merchant Settlement
-
-Description: Merchant receives payment for a completed transaction of 1,000, less a 5 pct fee (50).
-
-Accounting Treatment:
-
-| Date | Account | Debit | Credit |
-|------|---------|-----------|------------|
-| 2024-01-16 | **Cash (10000)** *(Asset)* | 950 | |
-| 2024-01-16 | **Merchant Fee Revenue (40003)** *(Income)* | 50 | |
-| 2024-01-16 | **Accounts Payable - Merchant (20002)** *(Liability)* | | 1,000 |
-
-Rationale: The company receives 950 in cash (the purchase amount minus the fee), recognizes 50 in fee revenue, and records a 1,000 liability to the merchant.
+Rationale:
+The transfer fee represents a service performed immediately. According to IFRS 15, revenue can be recognized at the point when the customer receives and consumes the benefit of the service (e.g., the transfer processing). The transfer amount itself is an asset movement and does not impact revenue.
 
 [Continue with other events in this format, using specific amounts for each]
 
@@ -117,9 +93,9 @@ Cash Flow Statement Impact:
 **Example:**
 Key judgments and estimates include:
 
-1. Timing of revenue recognition: Determining when performance obligations are satisfied
-2. Estimation of expected credit losses on receivables
-3. Fair value measurement of any complex financial instruments
+1. Timing of revenue recognition: Determining when performance obligations are satisfied (reference doc xxxx paragraphs yyyy)
+2. Estimation of expected credit losses on receivables (reference doc xxxx paragraphs yyyy)
+3. Fair value measurement of any complex financial instruments (reference doc xxxx paragraphs yyyy)
 
 ## 7. Disclosure Requirements
 
@@ -146,4 +122,4 @@ The accounting treatment for [Product Name] primarily revolves around the timing
 
 **Example:**
 Appendix A: Detailed calculation of expected credit losses
-Appendix C: Relevant excerpts from IFRS 9 and IFRS 15
+Appendix C: Relevant excerpts from IFRS 9 and IFRS 15  [actually output the excerpts]
