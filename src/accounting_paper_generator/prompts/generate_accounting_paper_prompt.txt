@@ -1,97 +1,84 @@
-You are an expert accountant tasked with generating an accounting paper based on the provided information. Follow these instructions carefully to complete the task:
+You are an expert accountant tasked with generating a comprehensive accounting paper for a fintech product. Your analysis must be thorough, accurate, and adhere to relevant accounting standards. Follow these instructions carefully:
 
-1. Review the following template that will serve as the structure for your accounting paper:
+1. Familiarize yourself with the following information:
 
 <accounting_paper_template>
 {{accounting_paper_template}}
 </accounting_paper_template>
 
-2. Take note of these specific instructions for completing the accounting paper:
-
-<generate_accounting_paper_instructions>
-{{generate_accounting_paper_instructions}}
-</generate_accounting_paper_instructions>
-
-3. Familiarize yourself with the product description:
-
 <fintech_product_description>
 {{fintech_product_description}}
 </fintech_product_description>
-
-4. Review the events that need to be accounted for:
-
-<events>
-{{events}}
-</events>
-
-4.1 for each event:
-
-Interpret the event: Extract the financial actions and determine the correct debits, credits, and any applicable fees.
-Generate journal entries: Create appropriate accounting entries based on the described financial actions using standard accounting rules (e.g., debiting assets for increases, crediting liabilities for increases).
-Reference relevant accounting regulations: Based on the nature of the event, identify the applicable accounting regulation (e.g., IFRS, GAAP) and specific paragraph that justifies the decision.
-Document the decision process: Alongside the journal entries, include a rationale explaining how the accounting standards apply to the event.
-Present the journal entries in a tabular format: Ensure the output is formatted as a table for readability, like the example provided.
-For each event, the input will include:
-
-event_name: A description of the financial event (e.g., "Intra-Branch Transfer Execution").
-trigger: The action or condition that initiates the event (e.g., "Sender confirms transfer after authentication").
-financial_impact: A detailed description of the financial actions that need to be processed (e.g., "1) Transfer amount debited from sender's account. 2) Same amount credited to recipient's account. 3) Transfer fee deducted from sender's account.").
-
-
-Output Format:
-Journal Entries: Presented in the following tabular format:
-Date	Account	Debit	Credit
-YYYY-MM-DD	Account Name (type: Asset/Liability/Income)	Amount	Amount
-Regulation and Paragraph: The relevant accounting regulation and paragraph (e.g., IFRS 15, Paragraph 31) that was used to justify the treatment of the event.
-
-Rationale: A brief explanation of how the event relates to the identified accounting regulation.
-
-<example input>
-{
-  "event_name": "Intra-Branch Transfer Execution",
-  "trigger": "Sender confirms transfer after authentication",
-  "financial_impact": "1) Transfer amount (e.g., $1000) debited from sender's account. 2) Same amount ($1000) credited to recipient's account. 3) Any applicable transfer fee (e.g., $2) deducted from sender's account."
-}
-</example input>
-
-<expected output>
-Accounting Treatment:
-
-Date	Account	Debit	Credit
-2024-01-20	Demand Deposits (2010) (Asset)	1,000	
-2024-01-20	Demand Deposits (2010) (Asset)		1,000
-2024-01-20	Transfer Fees (Expense)	2	
-2024-01-20	Digital Banking Service Fees (4140) (Income)		2
-Regulation and Paragraph:
-IFRS 15, Paragraph 31: Revenue is recognized when the performance obligation is satisfied by transferring a service to the customer.
-
-Rationale:
-The transfer fee represents a service performed immediately. According to IFRS 15, revenue can be recognized at the point when the customer receives and consumes the benefit of the service (e.g., the transfer processing). The transfer amount itself is an asset movement and does not impact revenue.
-</expected output>
-
-
-
-5. Study the provided chart of accounts:
 
 <chart_of_accounts>
 {{chart_of_accounts}}
 </chart_of_accounts>
 
-6. Generate the accounting paper by following these guidelines:
-   a. Adhere strictly to the provided template structure.
-   b. Incorporate all relevant information from the product description and events.
-   c. Follow the specific instructions provided.
-   d. Use appropriate accounting terminology and principles throughout the paper.
-   e. Ensure all calculations are accurate and clearly explained.
-   f. Provide detailed explanations for each accounting entry or decision made.
-   g. Use account numbers and names from the provided chart of accounts when making journal entries or discussing specific accounts.
+2. For each event provided, you will need to:
+   a) Interpret the event
+   b) Generate appropriate journal entries
+   c) Reference relevant accounting regulations
+   d) Document your decision process
+   e) Present the journal entries in a tabular format (following book-keeping principles: assets = liabilities + equity.  DRs = CRs. Each DR/CR pair must be the same currency.If the event involves multiple currencies (e.g., foreign exchange), ensure that any debits and credits for each currency are paired correctly using appropriate intermediary accounts. You cannot directly debit one currency and credit another).
 
-7. Before finalizing your accounting paper, review your work:
-   a. Check that all sections from the template are included and properly filled out.
-   b. Verify that all calculations are correct and consistent throughout the paper.
-   c. Ensure that you've addressed all events and followed all specific instructions.
-   d. Confirm that you've used the correct account numbers and names from the chart of accounts.
 
-8. Present your completed accounting paper only with no introductions of signoffs. Make sure to include all sections as outlined in the template, filling in the relevant information based on the provided data and instructions.
+Here are the events to process:
 
-Remember to maintain a professional tone throughout the paper and double-check all entries for accuracy before submitting your final response. If you need to make any assumptions or interpretations, clearly state them and provide a rationale for your decisions.
+<events>
+{{events}}
+</events>
+
+3. For each event, follow these steps within the <event_analysis> tags:
+
+a) Event Interpretation:
+   - Summarize the key financial actions described in the event.
+   - Identify and list all relevant accounts based on the provided chart of accounts.
+   - For multi-currency events (e.g., foreign exchange transactions), ensure that all journal entries clearly specify debits and credits in each currency. Use intermediary accounts, such as FX Payable/Receivable, to correctly record transactions between different currencies.
+
+b) Account Analysis:
+   - For each identified account, explain its role in the transaction.
+   - Consider any potential complexities or special considerations for each account.
+
+c) Journal Entries:
+   - Determine the appropriate debits and credits.
+   - Ensure that each debit-credit pair is in the same currency. For foreign exchange transactions, create separate entries for each currency involved, using FX Payable/Receivable or a similar intermediary account to convert between currencies.
+   - Use the correct account numbers and names from the chart of accounts.
+   - Present the entries in this format:
+
+   Date       | Legal Entity | Account                        | Currency | Debit | Credit
+   ---------- | ------------ | ------------------------------ | -------- | ----- | ------
+   YYYY-MM-DD | Northstar UK | Account Name (Number) (Type)   |   USD    | X.XX  |
+   YYYY-MM-DD | Northstar UK | Account Name (Number) (Type)   |   USD    |       | X.XX
+
+d) Accounting Regulation:
+   - Identify the relevant accounting standard (e.g., IFRS, GAAP).
+   - Cite the specific paragraph that justifies your treatment.
+   - Double-check the IFRS reference to ensure accuracy.
+
+e) Rationale:
+   - Explain how the accounting standard applies to this specific event.
+   - Justify any assumptions or interpretations made.
+   - Justify the use of FX Payable/Receivable accounts in multi-currency transactions to avoid direct debit/credit between currencies.
+   - Consider alternative treatments and explain why they were not chosen.
+
+f) Final Review:
+   - Verify that all accounts are correctly used and balanced.
+   - Ensure the treatment aligns with the nature of the fintech product.
+   - Ensure all debits and credits are in the same currency, and any currency conversions use the appropriate intermediary accounts.
+   - Confirm that all aspects of the event have been addressed.
+
+4. After processing all events, compile your findings into a comprehensive accounting paper following the provided template structure. Ensure that you:
+   - Address all sections outlined in the template
+   - Incorporate relevant information from the product description
+   - Use appropriate accounting terminology throughout
+   - Provide clear explanations for all entries and decisions
+   - Verify that all calculations are accurate and consistent
+
+5. Before finalizing your paper:
+   - Review all sections for completeness
+   - Double-check all calculations
+   - Confirm the use of correct account numbers and names
+   - Confirm the use of intermediary accounts for multi-currency transactions to avoid currency mismatches
+   - Ensure all debits and credits are balanced and in the same currency
+
+Present your completed accounting paper, starting with the title and following the structure provided in the template. Maintain a professional tone throughout and clearly state any assumptions made.

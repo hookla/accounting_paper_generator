@@ -24,7 +24,7 @@ def render():
                     st.error(f"An error occurred while suggesting events: {str(e)}")
 
     events = st.text_area(
-        "Events (Markdown format)",
+        "Events (JSON format)",
         value=st.session_state.get("events", ""),
         height=300,
         key="events_input",

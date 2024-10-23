@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Streamlit Run",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "/home/laurence/.cache/pypoetry/virtualenvs/accounting-paper-generator-4lyoQlvn-py3.12/bin/streamlit",
+        "args": [
+          "run",
+          "${workspaceFolder}/src/accounting_paper_generator/app.py"
+        ],
+        "console": "integratedTerminal",
+        "justMyCode": true
+      }
+    ]
+  }
+  

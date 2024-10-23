@@ -9,11 +9,7 @@ providers:
   openai:
     name: OpenAI
     models:
-      - name: gpt-4o-2024-08-06
+      - name: gpt-4o
         display_name: GPT-4o
       - name: gpt-4o-mini
         display_name: gpt-4o-mini
-      - name: o1-preview
-        display_name: o1-preview
-      - name: o1-mini
-        display_name: o1-mini

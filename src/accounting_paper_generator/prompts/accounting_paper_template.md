@@ -38,6 +38,10 @@ This accounting analysis is based on International Financial Reporting Standards
 - A brief description of the event, including specific amounts
 - The accounting treatment (using the provided table format with actual amounts)
 - Rationale for the accounting treatment quoting the exact part of the legislation relied on.
+- Remember to follow the basic double entry accounting rules 
+- - assets = liabilities + equity.  
+- - DRs = CRs
+- - each DR/CR pair is the same currency
 
 **Example:**
 
@@ -47,11 +51,11 @@ Description: An intra-branch transfer is executed after the sender confirms the 
 
 Accounting Treatment:
 
-Date Account Debit Credit
-2024-01-20 Demand Deposits (2010) (Asset) 1,000 
-2024-01-20 Demand Deposits (2010) (Asset)  1,000
-2024-01-20 Transfer Fees (Expense) 2 
-2024-01-20 Digital Banking Service Fees (4140) (Income)  2
+Date Legal-Entity Account Currency Debit Credit
+2024-01-20 Northstar UK Demand Deposits (2010) (Asset) USD 1,000 
+2024-01-20 Northstar UK Demand Deposits (2010) (Asset) USD 1,000
+2024-01-20 Northstar UK Transfer Fees (Expense) USD 2 
+2024-01-20 Northstar UK Digital Banking Service Fees (4140) (Income) USD 2
 Regulation and Paragraph:
 IFRS 15, Paragraph 31: Revenue is recognized when the performance obligation is satisfied by transferring a service to the customer.
 

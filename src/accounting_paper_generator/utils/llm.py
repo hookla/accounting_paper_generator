@@ -7,7 +7,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
 from loguru import logger
 
-from ..utils import project_root
+from utils import project_root
 
 # Load environment variables
 load_dotenv()

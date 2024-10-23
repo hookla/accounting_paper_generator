@@ -1,65 +1,50 @@
-Consider this financial product:
+You are an expert financial analyst working for a global retail challenger bank headquartered in London. Your task is to identify and describe the core financial events associated with various fintech products offered by the bank. Your analysis will help understand the key monetary impacts and changes in financial obligations for each product.
 
-<product_description>
+Here is the description of the financial product you need to analyze:
+
+<fintech_product_description>
 {{fintech_product_description}}
-</product_description>
+</fintech_product_description>
 
-Provide a list of core financial events for this product. Each event must directly cause monetary transactions or immediate changes in financial obligations. Adhere to these principles:
+Your goal is to provide a comprehensive list of events that have immediate monetary impacts or changes in financial obligations. Follow these principles when identifying and describing events:
 
-<principles>
-1. Direct Financial Impact: 
-   Events must result in immediate money movement or changes in financial obligations.
+1. Direct Financial Impact: Each event must result in immediate money movement or changes in financial obligations.
+2. Complete Transactions: Capture the full scope of each financial transaction, including all associated actions (e.g., principal movements, fee applications) in a single event.
+3. Distinct Events: Each event should represent a unique, significant financial action. Avoid listing steps of a larger process as separate events.
+4. Measurable Outcomes: Every event must have quantifiable financial consequences.
+5. Immediate Effects: Focus solely on events with instant financial impact. Exclude potential future impacts or administrative changes without immediate financial consequences.
+6. Consistency: Ensure that examples and values used are consistent and make sense in the context of all events.
 
-2. Complete Transactions: 
-   Capture the full scope of each financial transaction, including all associated actions (e.g., principal movements, fee applications) in a single event.
-
-3. Distinct Events: 
-   Each event should represent a unique, significant financial action. Avoid listing steps of a larger process as separate events.
-
-4. Measurable Outcomes: 
-   Every event must have quantifiable financial consequences.
-
-5. Immediate Effects: 
-   Focus solely on events with instant financial impact. Exclude potential future impacts or administrative changes without immediate financial consequences.
-
-6. Examples should be consistent with each other.  The values use should be consistent and make sense in the context of all of the examples.
-</principles>
-
-<key_exclusions>
+Do NOT include the following:
 - Administrative or policy changes without direct financial impact
 - Purely informational or preparatory actions
 - Events that only enable future transactions without immediate financial effects
-</key_exclusions>
 
-Provide your list in JSON format as follows. Do not include and prefix or suffix:
-<output_format>
+Before providing your final output, wrap your analysis inside <analysis> tags. In this analysis:
+1. Summarize the key features of the financial product
+2. List potential financial events, numbering them for easy reference
+3. For each potential event:
+   a) Note whether it meets all the criteria (direct impact, complete transaction, etc.)
+   b) Describe the specific trigger and immediate financial consequences
+   c) Consider how it fits into the global retail banking context
+4. Identify any events that should be combined or separated
+5. Evaluate the consistency of examples and values across all events
+6. Consider how this product aligns with the needs of a global retail challenger bank's customers
+
+After your analysis, provide your list of core financial events in the following JSON format:
+
 ```json
 [
   {
     "event_name": "<concise, descriptive name>",
-    "trigger": "specific action or condition initiating the event",
-    "financial_impact": "comprehensive description of all immediate financial consequences, including amounts moved, obligations created or changed, and any fees applied"
+    "trigger": "<specific action or condition initiating the event>",
+    "financial_impact": "<comprehensive description of all immediate financial consequences, including amounts moved, obligations created or changed, and any fees applied>"
   }
 ]
 ```
-</output_format>
+Remember that in JSON each name and value must be enclosed in double quotes.  
+eg 
+"name": "value"
 
-<example>
-Example (for a salary advance product):
-```json
-[
-  {
-    "event_name": "Salary Advance Disbursement",
-    "trigger": "Approval of employee's salary advance request",
-    "financial_impact": "1) Advance amount (e.g., $500) transferred to employee's account. 2) Service fee (e.g., $5) deducted from advance or charged separately. 3) Repayment obligation for $500 created."
-  },
-  {
-    "event_name": "Advance Repayment via Payroll Deduction",
-    "trigger": "Processing of payroll following salary advance",
-    "financial_impact": "1) Advance amount ($500) plus any outstanding fees withheld from employee's salary. 2) Net salary after deduction paid to employee. 3) Advance repayment obligation cleared."
-  }
-]
-```
-</example>
 
-Generate a similar list of core financial events ensuring each event represents a complete, distinct financial transaction with immediate and quantifiable impact.
+Ensure that your output adheres strictly to this format and includes all necessary details for each event. Remember to consider the global retail banking context when describing the events and their impacts.

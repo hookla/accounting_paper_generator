@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from loguru import logger
 
-from ..utils import current_dir, project_root
+from utils import current_dir, project_root
 
 # Load environment variables
 load_dotenv()

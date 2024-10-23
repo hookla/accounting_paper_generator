@@ -22,28 +22,37 @@ The Accounting Paper Generator is a web application that helps users create deta
 
 1. Clone the repository
 2. Install Poetry if you haven't already:
-   ```
+
+   ```bash
    pip install poetry
    ```
+
 3. Install project dependencies:
-   ```
+
+   ```bash
    poetry install
    ```
+
 4. Create a `.env` file in the project root and add your Anthropic API key:
-   ```
+
+   ```bash
    ANTHROPIC_API_KEY=your_api_key_here
    ```
 
 ## Usage
 
 1. Activate the Poetry environment:
-   ```
+
+   ```bash
    poetry shell
    ```
+
 2. Run the Streamlit app:
-   ```
+
+   ```bash
    streamlit run src/accounting_paper_generator/app.py
    ```
+
 3. Open the provided URL in your browser
 4. Enter your product description and list of events
 5. Click "Generate Paper" to create your accounting paper
@@ -51,6 +60,7 @@ The Accounting Paper Generator is a web application that helps users create deta
 ## Dependencies
 
 Main dependencies include:
+
 - Streamlit
 - Langchain
 - Anthropic API (Claude model)
