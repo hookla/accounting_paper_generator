@@ -40,6 +40,6 @@ def render():
         st.markdown("### Current Paper:")
         st.markdown(accounting_paper, unsafe_allow_html=True)
         download_button = download_link(
-            accounting_paper, "accounting_paper.txt", "Download Paper"
+            accounting_paper, "accounting_paper.md", "Download Paper"
         )
         st.markdown(download_button, unsafe_allow_html=True)
