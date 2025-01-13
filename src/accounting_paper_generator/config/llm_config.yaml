@@ -13,3 +13,6 @@ providers:
         display_name: GPT-4o
       - name: gpt-4o-mini
         display_name: gpt-4o-mini
+      - name: o1-2024-12-17
+        display_name: o1-2024-12-17
+
